@@ -8,6 +8,7 @@ describe('GET /', () => {
   it('Responds to homepage request', () => {
     return request(app)
       .get('/')
+      .set('Authorization', 'Bearer chick-fil-a')
       .expect(200, 'Server running. Please make a request to /bookmarks');
   });
 });
@@ -25,6 +26,7 @@ describe('GET /bookmark', () => {
   it('Responds with all the bookmarks', () => {
     return request(app)
       .get('/bookmarks')
+      .set('Authorization', 'Bearer chick-fil-a')
       .expect(200)
       .then(res => {
         expect(res.body).to.be.an('array');
@@ -35,30 +37,38 @@ describe('GET /bookmark', () => {
       });
   });
 
-  it.skip('GET Responds with the specific bookmark and correct id', () => {
+  it('GET Responds with the specific bookmark and correct id', () => {
     return request(app)
       .get('/bookmarks/1')
+      .set('Authorization', 'Bearer chick-fil-a')
       .expect(200)
       .then(res => {
-        expect(res.body).to.be.an('array');
-        expect(res.body).to.have.lengthOf(1);
         expect(res.body).to.eql(data[0]);
-        expect(res.body[0].id).to.be.a('number');
-        expect(res.body[0].id).to.equal(1);
+        expect(res.body.id).to.be.a('number');
+        expect(res.body.id).to.equal(1);
       });
   });
 
-  it.skip('GET Responds with the specific bookmark and correct url', () => {
+  it('GET Responds with the specific bookmark and correct url', () => {
     return request(app)
-      .get('/bookmarks/1')
+      .get('/bookmarks/2')
+      .set('Authorization', 'Bearer chick-fil-a')
       .expect(200)
       .then(res => {
-        expect(res.body).to.be.an('array');
-        expect(res.body).to.have.lengthOf(1);
+        expect(res.body).to.be.an('object');
         expect(res.body).to.eql(data[1]);
-        expect(res.body[0].url).to.equal('https://www.google.com');
+        expect(res.body.url).to.equal('https://www.google.com');
       });
   });
 });
 
-describe('POST /bookmark')
+// describe('POST /bookmarks', () => {
+//   it('Responds to homepage request', () => {
+//     return request(app)
+//       .post('/bookmarks')
+//       .set('Authorization', 'Bearer chick-fil-a')
+//       .expect(200, 'Server running. Please make a request to /bookmarks');
+//   });
+// });
+
+
