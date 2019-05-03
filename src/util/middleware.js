@@ -1,6 +1,6 @@
 'use strict';
 
-const { NODE_ENV, API_KEY } = require('../config');
+const { NODE_ENV } = require('../config');
 const winston = require('winston');
 
 
