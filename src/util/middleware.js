@@ -4,9 +4,6 @@ const { NODE_ENV } = require('../config');
 const winston = require('winston');
 
 
-
-
-
 //For Morgan whitelist
 const whitelist = ['http://localhost:3000', 'http://my-project.com'];
 

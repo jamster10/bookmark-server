@@ -5,6 +5,7 @@ const express = require('express');
 const helmet = require('helmet');
 const morgan = require('morgan');
 const cors = require('cors');
+const {API_KEY } = require('./config');
 
 const { morgan_Settings, cors_Settings, logger } = require('./util/middleware.js');
 const { errorHandler } = require('./util/error-handling');
@@ -33,7 +34,7 @@ app.use(errorHandler);
 
 function checkAuthorization(req, res, next){
   const userToken = req.get('Authorization');
-  if (!userToken || userToken.split(' ')[1] !== process.env.API_KEY){
+  if (!userToken || userToken.split(' ')[1] !== API_KEY){
     logger.error(`Unauthorized attempt using key: ${userToken ? userToken.split(' ')[1] : 'null'}`);
     let error = {
       status: 401,

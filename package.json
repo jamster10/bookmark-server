@@ -19,6 +19,9 @@
     "morgan",
     "helmet"
   ],
+  "engines": {
+    "node": "10.15.3"
+    },
   "author": "Kristof-Pierre Cummings",
   "license": "ISC",
   "dependencies": {
